@@ -1,0 +1,266 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "sources": [
+      "SINUMERIK 840D sl Job Planning Manual (Siemens, 2013)",
+      "SINUMERIK 840D sl NC Variables List Manual (Siemens, 2019)",
+      "Fanuc Series 0i-MODEL F Parameter Manual",
+      "https://www.machinetoolhelp.com/Applications/macro/system_variables.html"
+    ],
+    "total_pairs": 85,
+    "confidence": "verified_against_official_manuals"
+  },
+
+  "moves": {
+    "G0":  { "siemens": "G0",  "notes": "Identico" },
+    "G1":  { "siemens": "G1",  "notes": "Identico" },
+    "G2":  { "siemens": "G2",  "notes": "Identico" },
+    "G3":  { "siemens": "G3",  "notes": "Identico" }
+  },
+
+  "planes": {
+    "G17": { "siemens": "G17", "notes": "Plano XY - identico" },
+    "G18": { "siemens": "G18", "notes": "Plano ZX - identico" },
+    "G19": { "siemens": "G19", "notes": "Plano YZ - identico" }
+  },
+
+  "positioning": {
+    "G90": { "siemens": "G90", "notes": "Absoluto - identico" },
+    "G91": { "siemens": "G91", "notes": "Incremental - identico" }
+  },
+
+  "units": {
+    "G20": { "siemens": "G70", "notes": "Pulgadas - Fanuc G20 = Siemens G70" },
+    "G21": { "siemens": "G71", "notes": "Milimetros - Fanuc G21 = Siemens G71" }
+  },
+
+  "feed_mode": {
+    "G94": { "siemens": "G94", "notes": "mm/min - identico" },
+    "G95": { "siemens": "G95", "notes": "mm/rev - identico" }
+  },
+
+  "retract": {
+    "G98": { "siemens": "G98", "notes": "Retract a posicion inicial del ciclo" },
+    "G99": { "siemens": "G99", "notes": "Retract al plano R" }
+  },
+
+  "cycles": {
+    "G80": {
+      "siemens": null,
+      "action": "cancel_cycle",
+      "notes": "Cancelar ciclo - en Siemens los ciclos no quedan activos, se omite G80"
+    },
+    "G81": {
+      "siemens": "CYCLE81",
+      "param_map": {
+        "R":  "RTP",
+        "Z":  "DP",
+        "F":  "FDPR",
+        "_RFP": 0.0,
+        "_SDIS": 2.0
+      },
+      "signature": "CYCLE81(RTP, RFP, SDIS, DP, DPR)",
+      "notes": "Taladrado simple. RFP=plano referencia(0), SDIS=dist seguridad(2mm)"
+    },
+    "G82": {
+      "siemens": "CYCLE82",
+      "param_map": {
+        "R":  "RTP",
+        "Z":  "DP",
+        "P":  "DTB",
+        "F":  "FDPR",
+        "_RFP": 0.0,
+        "_SDIS": 2.0
+      },
+      "signature": "CYCLE82(RTP, RFP, SDIS, DP, DPR, DTB)",
+      "notes": "Taladrado con dwell. P en Fanuc es ms, DTB en Siemens es segundos -> dividir /1000"
+    },
+    "G83": {
+      "siemens": "CYCLE83",
+      "param_map": {
+        "R":  "RTP",
+        "Z":  "DP",
+        "Q":  "FDEP",
+        "F":  "FDPR",
+        "_RFP": 0.0,
+        "_SDIS": 2.0,
+        "_DAM": 0.0,
+        "_DTB": 0.0,
+        "_DTS": 0.0,
+        "_FRF": 1.0,
+        "_VARI": 0,
+        "_AXN": 0,
+        "_MDEP": 0.0,
+        "_VRT": 0.0,
+        "_DTD": 0.0,
+        "_DIS1": 0.0
+      },
+      "signature": "CYCLE83(RTP, RFP, SDIS, DP, DPR, FDEP, FDPR, DAM, DTB, DTS, FRF, VARI, AXN, MDEP, VRT, DTD, DIS1)",
+      "notes": "Peck drilling. FDEP = primer incremento = Q"
+    },
+    "G84": {
+      "siemens": "CYCLE84",
+      "param_map": {
+        "R":  "RTP",
+        "Z":  "DP",
+        "F":  "SDAC",
+        "_RFP": 0.0,
+        "_SDIS": 2.0,
+        "_SDIR": 3,
+        "_SDAC": 3
+      },
+      "signature": "CYCLE84(RTP, RFP, SDIS, DP, DPR, DTB, SDAC, MPIT, PIT, POSS, SST, SST1)",
+      "notes": "Roscado rigido. SDIR=3 (M3 al bajar). SDAC=3 (M4 al subir)"
+    },
+    "G85": {
+      "siemens": "CYCLE85",
+      "param_map": {
+        "R":  "RTP",
+        "Z":  "DP",
+        "F":  "FDPR",
+        "_RFP": 0.0,
+        "_SDIS": 2.0,
+        "_FDPRA": null
+      },
+      "signature": "CYCLE85(RTP, RFP, SDIS, DP, DPR, DTB, FDPR, FDPRA)",
+      "notes": "Escariado. FDPRA = feed retract, si null = mismo que FDPR"
+    }
+  },
+
+  "compensation": {
+    "G40": {
+      "siemens": "G40",
+      "notes": "Cancelar compensacion radio - identico"
+    },
+    "G41": {
+      "siemens": "G41",
+      "notes": "Compensacion izquierda. En Siemens el D# viene del T activo. Sintaxis identica."
+    },
+    "G42": {
+      "siemens": "G42",
+      "notes": "Compensacion derecha - identico"
+    },
+    "G43": {
+      "siemens": null,
+      "action": "tool_length_implicit",
+      "notes": "En Siemens, TLC es automatica al llamar T# D#. No se genera G43. Se omite."
+    },
+    "G49": {
+      "siemens": null,
+      "action": "ignore",
+      "notes": "Cancelar TLC - implicito en Siemens al cambiar herramienta. Se omite."
+    }
+  },
+
+  "home": {
+    "G28": {
+      "siemens": "G74",
+      "fanuc_variant": "G28 G91 Z0",
+      "siemens_variant": "G74 Z1=0",
+      "notes": "Retorno a home. G28 G91 Z0 -> G74 Z1=0 en Siemens"
+    }
+  },
+
+  "subprograms": {
+    "M98": {
+      "siemens": "CALL",
+      "format": "CALL \"P{number}\" P{repeats}",
+      "alt_format": "L{number} P{repeats}",
+      "notes": "M98 P1000 L3 -> CALL \"P1000\" P3 o L1000 P3. Usar CALL para nombres, L para numeros."
+    },
+    "M99": {
+      "siemens": "RET",
+      "notes": "Fin de subprograma - M99 -> RET"
+    }
+  },
+
+  "program_control": {
+    "M2":  { "siemens": "M2",  "notes": "Fin de programa - identico" },
+    "M30": { "siemens": "M30", "notes": "Fin de programa con rebobinado - identico" }
+  },
+
+  "spindle": {
+    "M3": { "siemens": "M3", "notes": "Husillo CW - identico" },
+    "M4": { "siemens": "M4", "notes": "Husillo CCW - identico" },
+    "M5": { "siemens": "M5", "notes": "Parar husillo - identico" }
+  },
+
+  "coolant": {
+    "M8": { "siemens": "M8", "notes": "Refrigerante ON - identico" },
+    "M9": { "siemens": "M9", "notes": "Refrigerante OFF - identico" }
+  },
+
+  "system_variables": {
+    "#3011": {
+      "siemens": null,
+      "siemens_parts": {
+        "year":  "$AC_YEAR",
+        "month": "$AC_MONTH",
+        "day":   "$AC_DAY"
+      },
+      "needs_llm": true,
+      "notes": "Fanuc: fecha compacta YYYYMMDD. Siemens: variables separadas. Requiere LLM para reconstruir expresion."
+    },
+    "#3012": {
+      "siemens": null,
+      "siemens_parts": {
+        "hour":   "$AC_HOUR",
+        "minute": "$AC_MINUTE",
+        "second": "$AC_SECOND"
+      },
+      "needs_llm": true,
+      "notes": "Fanuc: hora compacta HHMMSS. Siemens: variables separadas. Requiere LLM."
+    },
+    "#2001": {
+      "siemens": "$TC_DP3[1,1]",
+      "notes": "Tool length offset T1. Patron: #200N -> $TC_DP3[N,1]"
+    },
+    "#2201": {
+      "siemens": "$TC_DP6[1,1]",
+      "notes": "Tool radius offset T1. Patron: #220N -> $TC_DP6[N,1]"
+    },
+    "#4001": {
+      "siemens": "$P_GG[0]",
+      "notes": "Modal G del grupo 1 (G0/G1/G2/G3)"
+    },
+    "#4003": {
+      "siemens": "$P_GG[2]",
+      "notes": "Modal G del grupo 3 (G90/G91)"
+    },
+    "#5001": {
+      "siemens": "$AA_IW[X]",
+      "notes": "Posicion X en workpiece coords"
+    },
+    "#5002": {
+      "siemens": "$AA_IW[Y]",
+      "notes": "Posicion Y en workpiece coords"
+    },
+    "#5003": {
+      "siemens": "$AA_IW[Z]",
+      "notes": "Posicion Z en workpiece coords"
+    }
+  },
+
+  "user_variables": {
+    "#1_#33": {
+      "siemens": "local_R",
+      "notes": "Variables locales Fanuc #1-#33 (argumentos macro) -> variables R locales en Siemens"
+    },
+    "#100_#149": {
+      "siemens": "R0_R49",
+      "notes": "Variables locales comunes #100-#149 -> R0-R49"
+    },
+    "#500_#999": {
+      "siemens": "$R[0]_$R[499]",
+      "notes": "Variables globales #500-#999 -> $R[n] o GUD (Global User Data)"
+    }
+  },
+
+  "modal_cancels": {
+    "G80": {
+      "siemens": null,
+      "action": "cancel_cycle",
+      "notes": "Cancelar ciclo activo - en Siemens los CYCLE no son modales, se omite"
+    }
+  }
+}

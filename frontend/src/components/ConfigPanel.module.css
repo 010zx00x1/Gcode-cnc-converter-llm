@@ -1,0 +1,124 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+.box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  width: 420px;
+  max-width: 95vw;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.head h2 { font-size: 16px; color: var(--text); font-weight: 600; }
+
+.close {
+  background: none;
+  color: var(--text-dim);
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.close:hover { color: var(--text); background: var(--surface2); }
+
+.body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.loading { color: var(--text-dim); text-align: center; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.field em { color: var(--accent); font-style: normal; margin-left: 6px; }
+
+.field select,
+.field input[type="number"] {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: var(--sans);
+}
+
+.field input[type="range"] {
+  accent-color: var(--accent);
+}
+
+.note {
+  font-size: 12px;
+  color: var(--text-dim);
+  background: var(--surface2);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.note code {
+  font-family: var(--mono);
+  color: var(--accent2);
+  font-size: 11px;
+}
+
+.err {
+  font-size: 12px;
+  color: var(--danger);
+  background: rgba(247, 90, 90, 0.1);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.cancel {
+  background: var(--surface2);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+.cancel:hover { color: var(--text); }
+
+.save {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 7px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+.save:hover:not(:disabled) { opacity: 0.85; }
+.save:disabled { opacity: 0.5; cursor: not-allowed; }

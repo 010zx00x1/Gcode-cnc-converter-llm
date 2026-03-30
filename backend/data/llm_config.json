@@ -1,0 +1,32 @@
+{
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "api_key_env": "OPENAI_API_KEY",
+  "temperature": 0.2,
+  "max_tokens": 1024,
+  "timeout_seconds": 20,
+  "available_providers": [
+    {
+      "id": "openai",
+      "models": [
+        "gpt-4o",
+        "gpt-4o-mini"
+      ]
+    },
+    {
+      "id": "anthropic",
+      "models": [
+        "claude-sonnet-4-6",
+        "claude-haiku-4-5-20251001"
+      ]
+    },
+    {
+      "id": "ollama",
+      "models": [
+        "codellama:13b",
+        "llama3:8b"
+      ],
+      "base_url": "http://localhost:11434"
+    }
+  ]
+}

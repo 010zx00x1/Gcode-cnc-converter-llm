@@ -1,0 +1,80 @@
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 16px;
+}
+
+.scoreRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.ring {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.label {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.metricLabel { color: var(--text-dim); }
+.metricValue { font-family: var(--mono); color: var(--text); font-weight: 500; }
+
+.warnings {
+  margin-top: 14px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.warnTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+
+.warnings ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.warnings li {
+  font-size: 12px;
+  color: var(--text-dim);
+  padding: 4px 8px;
+  background: rgba(240, 165, 0, 0.08);
+  border-radius: 4px;
+  border-left: 2px solid var(--warn);
+}
